@@ -9,97 +9,26 @@
     .pac-container { z-index: 10000; }
   </style>
 </head>
+
 <body class="bg-gray-100 text-gray-800">
-  <!-- Navbar -->
+
   <header class="bg-white shadow-md sticky top-0 z-20">
     <div class="container mx-auto flex items-center justify-between p-4">
       <h1 class="text-2xl font-bold text-blue-600">TravelQ</h1>
       <nav>
         <ul class="flex space-x-6">
-          <li><a href="index.html" class="hover:text-blue-500">Home</a></li>
-          <li><a href="suggest.html" class="text-blue-600 font-semibold">Suggest</a></li>
-          <li><a href="planner.html" class="hover:text-blue-500">Trip Planner</a></li>
-          <li><a href="discover.html" class="hover:text-blue-500">Discover</a></li>
+          <li><a href="#home.html" class="hover:text-blue-500">Home</a></li>
+          <li><a href="message.html" class="hover:text-blue-500">Message</a></li>
+          <li><a href="#planner" class="hover:text-blue-500">Trip Planner</a></li>
+          <li><a href="#Profile" class="hover:text-blue-500">Profile</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <section class="container mx-auto px-4 py-12">
-    <div class="bg-white p-6 rounded-lg shadow-md max-w-3xl mx-auto">
-      <h2 class="text-3xl font-semibold mb-4">AI Travel Suggestions</h2>
-      <form id="suggest-form" class="grid grid-cols-1 md:grid-cols-4 gap-4 relative">
-        <div class="relative col-span-1 md:col-span-2">
-          <input type="text" id="destination" placeholder="Destination (e.g. Tokyo)" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 z-10" autocomplete="off" />
-          <ul id="suggestions" class="absolute left-0 right-0 mt-2 bg-white border border-blue-200 rounded-xl shadow-lg z-50 max-h-60 overflow-auto hidden"></ul>
-        </div>
-        <input type="date" id="start-date" class="p-3 border rounded-lg focus:outline-none" />
-        <input type="date" id="end-date" class="p-3 border rounded-lg focus:outline-none" />
-        <button type="submit" class="col-span-1 md:col-span-4 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700">Get Suggestions</button>
-      </form>
-      <div id="suggest-results" class="mt-6 space-y-6"></div>
-    </div>
-  </section>
+
 
   <script src="src/js/suggest.js"></script>
-  <script>
-    const input = document.getElementById('destination');
-    const suggestions = document.getElementById('suggestions');
-    let debounceTimeout;
-    const FOURSQUARE_API_KEY = 'fsq31KRBdHxXuveuxmYlHoIGd3SbLymUa7v68KQJIyz3AbM='; 
-    input.addEventListener('input', function() {
-      clearTimeout(debounceTimeout);
-      const query = input.value.trim();
-      if (query.length < 2) {
-        suggestions.innerHTML = '';
-        suggestions.classList.add('hidden');
-        return;
-      }
-      debounceTimeout = setTimeout(async () => {
-        try {
-          const url = `https://api.foursquare.com/v3/places/autocomplete?query=${encodeURIComponent(query)}&limit=5`;
-          const res = await fetch(url, { headers: { "Authorization": FOURSQUARE_API_KEY } });
-          if (!res.ok) throw new Error('Network error');
-          const data = await res.json();
-          suggestions.innerHTML = '';
-          if (!data.results || data.results.length === 0) {
-            suggestions.classList.add('hidden');
-            return;
-          }
-          data.results.forEach(place => {
-            const li = document.createElement('li');
-            li.className = 'flex items-center gap-3 p-3 hover:bg-blue-100 cursor-pointer rounded-xl transition';
-            li.innerHTML = `<span class='font-medium'>${place.text}</span><span class='text-gray-500 text-sm'>${place.place && place.place.location ? place.place.location.formatted_address : ''}</span>`;
-            li.onclick = async () => {
-              input.value = place.text;
-              input.dataset.fsqid = place.place ? place.place.fsq_id : '';
-              suggestions.innerHTML = '';
-              suggestions.classList.add('hidden');
-              if (place.place && place.place.fsq_id) {
-                const photoRes = await fetch(`https://api.foursquare.com/v3/places/${place.place.fsq_id}/photos`, { headers: { "Authorization": FOURSQUARE_API_KEY } });
-                const photos = await photoRes.json();
-                if (photos && photos.length > 0) {
-                  const photoUrl = `${photos[0].prefix}original${photos[0].suffix}`;
-                  // Hiển thị ảnh ở suggest-results 
-                  document.getElementById('suggest-results').innerHTML = `<img src='${photoUrl}' alt='${place.text}' class='w-40 h-40 object-cover rounded-xl mx-auto my-4 shadow-lg' />`;
-                }
-              }
-            };
-            suggestions.appendChild(li);
-          });
-          suggestions.classList.remove('hidden');
-        } catch (e) {
-          suggestions.innerHTML = '<li class="p-3 text-red-500">Không thể lấy gợi ý, kiểm tra kết nối mạng hoặc API key!</li>';
-          suggestions.classList.remove('hidden');
-        }
-      }, 300);
-    });
-    document.addEventListener('click', function(e) {
-      if (!suggestions.contains(e.target) && e.target !== input) {
-        suggestions.innerHTML = '';
-        suggestions.classList.add('hidden');
-      }
-    });
-  </script>
+ 
 </body>
 </html>
