@@ -1,0 +1,141 @@
+/* File: style.css */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #000;
+  color: #fff;
+}
+
+
+/* Top navigation bar */
+.topnav {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 0 32px;
+  height: 60px;
+  background: #111;
+  border-bottom: 1px solid #222;
+  box-shadow: 0 2px 8px #0003;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.topnav .icon {
+  color: #fff;
+  font-size: 1.1em;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+.topnav .icon:hover, .topnav .icon a:hover {
+  background: #222;
+  color: #1da1f2;
+  text-decoration: none;
+}
+.topnav .icon a {
+  color: inherit;
+  text-decoration: none;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Main content */
+.main-content {
+  flex: 1;
+  padding: 30px;
+  background: #000;
+  margin-top: 76px; /* Đảm bảo nằm dưới topnav */
+}
+
+/* Post input form */
+.post-form {
+  border: 1px solid #333;
+  padding: 15px;
+  border-radius: 10px;
+  background: #111;
+  margin-bottom: 30px;
+}
+
+.post-form textarea {
+  width: 100%;
+  height: 80px;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  resize: none;
+  background: #000;
+  color: white;
+}
+
+.post-btn {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background: white;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Post list */
+.post-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Individual post */
+.post {
+  background: #111;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.username-time {
+  display: flex;
+  flex-direction: column;
+}
+
+.username {
+  font-weight: bold;
+}
+
+.time {
+  font-size: 0.8em;
+  color: #999;
+}
+
+.content {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.actions button {
+  background: transparent;
+  border: none;
+  color: #ccc;
+  margin-right: 15px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.actions button:hover {
+  color: white;
+}

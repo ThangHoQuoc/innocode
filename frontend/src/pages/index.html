@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Threads - Home</title>
+  <link rel="stylesheet" href="../styles/style.css" />
+</head>
+<body class="home-page">
+
+  <div class="sidebar">
+    <div class="icon">🏠 Home</div>
+    <div class="icon">💬 Message</div>
+    <div class="icon">🗓️ Planner</div>
+    <div class="icon"><a id="profile-link" href="../pages/profile.html" style="color:inherit;text-decoration:none;">👤 Profile</a></div>
+    <div class="icon" id="currentUserDisplay" style="margin-top:16px;font-weight:bold;"></div>
+  </div>
+
+  <div class="main-content">
+    <div class="post-form">
+      <textarea placeholder="What's new?"></textarea>
+      <input type="file" class="post-media" accept="image/*,video/*" multiple style="margin:8px 0;" />
+      <button class="post-btn">Post</button>
+    </div>
+    <div class="post-list"></div>
+    <hr>
+    <h3>Discover</h3>
+    <ul id="suggest-list" style="list-style:none;padding:0 0 8px 0;margin:0 0 16px 0;display:flex;flex-wrap:wrap;gap:10px;"></ul>
+  </div>
+
+
+  <!-- ✅ Gọi JS xử lý post/feed -->
+  <script src="../js/post.js"></script>
+
+  <!-- Kiểm tra đăng nhập -->
+  <script>
+    const token = localStorage.getItem("jwtToken");
+    const currentUser = localStorage.getItem("currentUser");
+
+    if (!token || !currentUser) {
+      alert("Bạn chưa đăng nhập!");
+      window.location.href = "../pages/login.html";
+    }
+
+    document.getElementById('profile-link').href = "../pages/profile.html";
+  </script>
+</body>
+</html>

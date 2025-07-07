@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cập nhật thông tin cá nhân</title>
+  <link rel="stylesheet" href="../styles/style.css" />
+  <link rel="stylesheet" href="update_profile.css" />
+</head>
+
+<body class="update-profile-page" style="background: linear-gradient(120deg, #f8fafc 0%, #e0e7ff 100%); min-height:100vh;">
+  <div class="update-profile-container" style="max-width:420px;margin:48px auto;padding:32px 28px 24px 28px;background:#fff;border-radius:18px;box-shadow:0 4px 32px 0 rgba(60,72,120,0.10);">
+    <h2 style="text-align:center;font-size:2rem;font-weight:700;color:#4f46e5;margin-bottom:18px;letter-spacing:1px;">Cập nhật thông tin cá nhân</h2>
+    <form id="profileForm" enctype="multipart/form-data" style="display:flex;flex-direction:column;gap:14px;">
+      <div class="avatar-preview" style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+        <img id="avatarImg" src="https://i.pravatar.cc/100?u=default" alt="Avatar Preview" style="width:100px;height:100px;border-radius:50%;border:3px solid #6366f1;object-fit:cover;box-shadow:0 2px 8px #6366f133;" />
+        <label for="avatar" style="font-size:0.95rem;color:#6366f1;cursor:pointer;font-weight:500;">Chọn ảnh đại diện</label>
+        <input type="file" id="avatar" accept="image/*" required style="display:none;" />
+      </div>
+      <label for="fullname" style="font-weight:500;">Họ và tên <span style="color:#f55">*</span></label>
+      <input type="text" id="fullname" required style="padding:8px 12px;border:1.5px solid #c7d2fe;border-radius:7px;font-size:1rem;" />
+      <label for="dob" style="font-weight:500;">Ngày sinh <span style="color:#f55">*</span></label>
+      <input type="date" id="dob" required style="padding:8px 12px;border:1.5px solid #c7d2fe;border-radius:7px;font-size:1rem;" />
+      <label for="bio" style="font-weight:500;">Bio <span style="color:#f55">*</span></label>
+      <textarea id="bio" rows="3" required style="padding:8px 12px;border:1.5px solid #c7d2fe;border-radius:7px;font-size:1rem;"></textarea>
+      <label for="hobbies" style="font-weight:500;">Sở thích</label>
+      <input type="text" id="hobbies" placeholder="Ví dụ: Đọc sách, Bóng đá..." style="padding:8px 12px;border:1.5px solid #c7d2fe;border-radius:7px;font-size:1rem;" />
+      <label for="nickname" style="font-weight:500;">Biệt danh</label>
+      <input type="text" id="nickname" placeholder="Tùy chọn" style="padding:8px 12px;border:1.5px solid #c7d2fe;border-radius:7px;font-size:1rem;" />
+      <button type="submit" class="submit-btn" style="margin-top:10px;padding:10px 0;background:#6366f1;color:#fff;font-weight:700;font-size:1.1rem;border:none;border-radius:8px;box-shadow:0 2px 8px #6366f133;cursor:pointer;transition:background 0.2s;">Cập nhật & Vào trang chủ</button>
+    </form>
+  </div>
+
+<script src="../js/update_profile.js"></script>
+</body>
+</html>
